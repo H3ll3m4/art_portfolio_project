@@ -7,6 +7,9 @@ db.sqlite3
 media
 *settings.py
 *.jpg
+*.svg
+*\static\*
+
 
 # Backup files # 
 *.bak 
