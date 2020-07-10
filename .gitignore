@@ -8,7 +8,10 @@ media
 *settings.py
 *.jpg
 *.svg
-*\static\*
+*/static/
+*/migrations/
+
+images
 
 
 # Backup files # 
@@ -88,6 +91,7 @@ venv/
 ENV/ 
 env.bak/ 
 venv.bak/ 
+myenv/
 
 # mkdocs documentation 
 /site 
