@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html lang="en-UK">
+{% load static %}
+
+<head>
+	<title>Hellema Landing Page</title>
+	
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" 
+	="{% static 'css/bootstrap.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/linea-icon.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/fancy-buttons.css'%}" />
+	
+	<!--=== Google Fonts ===-->
+	<link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,700,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:600,400,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<!--=== Other CSS files ===-->
+	<link rel="stylesheet" href="{% static 'css/animate.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/jquery.vegas.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/baraja.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/jquery.bxslider.css'%}" />
+	
+	<!--=== Main Stylesheets ===-->
+	<link rel="stylesheet" href="{% static 'css/style.css'%}" />
+	<link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+	
+	<!--=== Color Scheme, three colors are available red.css, orange.css and gray.css ===-->
+	<link rel="stylesheet" id="scheme-source" href="{% static 'css/schemes/gray.css'%}" />
+	
+	<!--=== Internet explorer fix ===-->
+	<!-- [if lt IE 9]>
+		<script src="http://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="http://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif] -->
+	
+	
+</head>
+<body>
+	<!--=== Preloader section starts ===-->
+	<section id="preloader">
+		<div class="loading-circle fa-spin"></div>
+	</section>
+	<!--=== Preloader section Ends ===-->
+	
+	<!--=== Header section Starts ===-->
+	<div id="header" class="header-section">
+		<!-- sticky-bar Starts-->
+		<div class="sticky-bar-wrap">
+			<div class="sticky-section">
+				<div id="topbar-hold" class="nav-hold container">
+					<nav class="navbar" role="navigation">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+							</button>
+							<!--=== Site Name ===-->
+							<a class="site-name navbar-brand" href="#"><span>H</span>ellema Art Gallery</a>
+						</div>
+						
+						<!-- Main Navigation menu Starts -->
+						<div class="collapse navbar-collapse navbar-responsive-collapse">
+							<ul class="nav navbar-nav navbar-right">
+								<li class="current"><a href="#header">Home</a></li>
+								<li><a href="#section-screenshots">My last artworks</a></li>
+								<li><a href="#section-services">Painting style and interests</a></li>
+							</ul>
+						</div>
+						<!-- Main Navigation menu ends-->
+					</nav>
+				</div>
+			</div>
+		</div>
+		<!-- sticky-bar Ends-->
+		<!--=== Header section Ends ===-->
+		
+		<!--=== Home Section Starts ===-->
+		<div id="section-home" class="home-section-wrap center">
+			<div class="section-overlay"></div>
+			<div class="container home">
+				<div class="row">
+					<h1 class="well-come">Hellema's Art Gallery</h1>
+					
+					<div class="col-md-8 col-md-offset-2">
+						<p class="intro-message">Abstract, semi abstract, fine art, figurative painter.</p>
+						
+						<div class="home-buttons">
+							<a href="section-services" class="fancy-button button-line button-white vertical">
+								Learn more
+								<span class="icon">
+									<i class="fa fa-gear"></i>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--=== Home Section Ends ===-->
+	</div>
+	
+		<!--=== ScreenShots section Starts ===-->
+	<section id="section-screenshots" class="screenshots-wrap">
+		<div class="container screenshots animated" data-animation="fadeInUp" data-animation-delay="1000">
+			<div class="row porfolio-container">
+				<div class="col-md-10 col-md-offset-1 center section-title">
+					<h3>My Latest Artworks</h3>
+				</div>
+
+                {% for job in jobs.all %}
+				<!-- Single screenshot starts -->
+				<div class="col-md-4 col-sm-4 col-xs-6">
+					<div class="screenshot">
+						<div class="photo-box">
+							<img src="{{ job.image.url }}" alt="" />
+							<div class="photo-overlay">
+								<h4>{{ job.summary}}</h4>
+							</div>
+							<span class="photo-zoom">
+								<a href="{% url 'detail' job.id %}" class="view-project"><i class="fa fa-search-plus fa-2x"></i></a>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!-- Single screenshot ends -->
+				
+				{% endfor %}
+			</div>
+			
+			<div id="portfolio-loader" class="center">
+				<div class="loading-circle fa-spin"></div>
+			</div> <!--=== Portfolio loader ===-->
+			
+			<div id="portfolio-load"></div><!--=== ajax content will be loaded here ===-->
+			
+			<div class="col-md-12 center back-button">
+				<a class="backToProject fancy-button button-line bell btn-col" href="#">
+					Back
+					<span class="icon">
+						<i class="fa fa-arrow-left"></i>
+					</span>
+				</a>
+			</div><!--=== Single portfolio back button ===-->
+		</div>
+	</section>
+	<!--=== ScreenShots section Ends ===-->
+		
+
+	<!--=== Services section Starts ===-->
+	<section id="section-services" class="services-wrap">
+		<div class="container services">
+			<div class="row">
+			
+				<div class="col-md-10 col-md-offset-1 center section-title">
+					<h3>What I do best</h3>
+				</div>
+			
+				<!-- Single Service Starts -->
+				<div class="col-md-6 col-sm-6 service animated" data-animation="fadeInLeft" data-animation-delay="700">
+					<span class="service-icon center"><i class="icon icon-basic-book-pencil fa-3x"></i></span>
+					<div class="service-desc">
+						<h4 class="service-title color-scheme">Abstract</h4>
+						<p class="service-description justify">
+							My love of colours makes me want to play with their interaction to create an energy.
+							I like to let my audience to see, feel and react to the spirit of my paintings without telling them what to think.
+						</p>
+					</div>
+				</div>
+				<!-- Single Service Ends -->
+				
+				<!-- Single Service Starts -->
+				<div class="col-md-6 col-sm-6 service animated" data-animation="fadeInUp" data-animation-delay="700">
+					<span class="service-icon center"><i class="icon icon-basic-paperplane fa-3x"></i></span>
+					<div class="service-desc">
+						<h4 class="service-title color-scheme">Landscapes</h4>
+						<p class="service-description justify">
+							I had the chance to travel the world for business and for fun.
+							I want to share my experience when air travel maybe need to be reduced.
+						</p>
+					</div>
+				</div>
+				<!-- Single Service ends -->
+				
+				<!-- Single Service Starts -->
+				<div class="col-md-6 col-sm-6 service animated" data-animation="fadeInRight" data-animation-delay="700">
+					<span class="service-icon center"><i class="icon icon-basic-accelerator fa-3x"></i></span>
+					<div class="service-desc">
+						<h4 class="service-title color-scheme">Marine</h4>
+						<p class="service-description justify">
+							What is more powerful than the wave of the ocean?
+							It produces the same sound as breathing, vital for life.
+						</p>
+					</div>
+				</div>
+				<!-- Single Service Ends -->
+				
+				<!-- Single Service Starts -->
+				<div class="col-md-6 col-sm-6 service animated" data-animation="fadeInUp" data-animation-delay="700">
+					<span class="service-icon center"><i class="icon icon-basic-lightbulb fa-3x"></i></span>
+					<div class="service-desc">
+						<h4 class="service-title color-scheme">Nature</h4>
+						<p class="service-description justify">
+							Connecting with nature is so wholesome.
+							I want to celebrate it!
+						</p>
+					</div>
+				</div>
+				<!-- Single Service Ends -->
+			</div>
+		</div>
+	</section>
+	<!--=== Services section Ends ===-->
+	
+	
+	<!--=== Subscribe section Starts ===-->
+	<section id="section-subscribe" class="subscribe-wrap">
+		<div class="section-overlay"></div>
+		<div class="container subscribe center">
+			<div class="row">
+				<div class="col-lg-12">
+					<p class="subscription-success"></p>
+					<p class="subscription-failed"></p>
+					<div class="col-md-10 col-md-offset-1 center section-title">
+						<h3>Subscribe</h3>
+					</div>
+					<form action="https://gmail.us10.list-manage.com/subscribe/post?u=89d64eee971561bed5e46dea7&amp;id=2fd9b961d3" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+						<input type="email" name="EMAIL" required="required" placeholder="Your Email" class="input-email" />
+						<div id="mce-responses" class="clear">
+							<div class="response" id="mce-error-response" style="display:none"></div>
+							<div class="response" id="mce-success-response" style="display:none"></div>
+							</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    							<div style="position: absolute; left: -5000px;" aria-hidden="true">
+							<input type="text" name="b_89d64eee971561bed5e46dea7_2fd9b961d3" tabindex="-1" value=""></div>
+    								<div class="clear">
+								<input type="submit"  value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="fancy-button button-line button-white large zoom">
+								</div>
+    							</div>
+					</form>
+				</div>
+
+
+			</div>
+		</div>
+	</section>
+	<!--=== Subscribe section Ends ===-->
+	
+	
+	<!--=== Footer section Starts ===-->
+	<div id="section-footer" class="footer-wrap">
+		<div class="container footer center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h4 class="footer-title"><!-- Footer Title -->
+						<a class="site-name" href="#"><span>H</span>ellema's Art Gallery</a>
+					</h4>
+					
+					<!-- Social Links -->
+					<div class="social-icons">
+						<ul>
+							<li><a href="https://www.instagram.com/h3ll3m4/"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="https://www.linkedin.com/in/hellema-ibrahim-a4515417/"><i class="fa fa-linkedin-square"></i></a></li>
+						</ul>
+					</div>
+					
+					<p class="copyright">Hellema's Art Portfolio. All rights reserved &copy; 2020</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--=== Footer section Ends ===-->
+	
+<!--==== Js files ====-->
+<!--==== Essential files ====-->
+<script type="text/javascript" src="{% static 'js/jquery-1.11.1.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrapValidator.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/modernizr.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.easing.1.3.js'%}"></script>
+
+<!--==== Slider and Card style plugin ====-->
+<script type="text/javascript" src="{% static 'js/jquery.baraja.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.vegas.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.bxslider.min.js'%}"></script>
+
+<!--==== MailChimp Widget plugin ====-->
+<script type="text/javascript" src="{% static 'js/jquery.ajaxchimp.min.js'%}"></script>
+
+<!--==== Scroll and navigation plugins ====-->
+<script type="text/javascript" src="{% static 'js/jquery.nicescroll.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.nav.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.appear.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.fitvids.js'%}"></script>
+
+<!--==== Custom Script files ====-->
+<script type="text/javascript" src="{% static 'js/custom.js'%}"></script>
+
+</body>
+</html>

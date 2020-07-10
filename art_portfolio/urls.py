@@ -21,11 +21,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    path('', jobs.views.home, name='home'),
-    path('jobs/<int:job_id>', jobs.views.detail, name ='detail'),
-] 
+    url(r"^admin/", admin.site.urls),
+    path("", jobs.views.home, name="home"),
+    path("jobs/<int:job_id>", jobs.views.detail, name="detail"),
+    url(r"^category/(?P<hierarchy>.+)/$", jobs.views.show_category, name="category"),
+    path(
+        "category/<int:category_id>",
+        jobs.views.category_content,
+        name="category_content",
+    ),
+]
 
-urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

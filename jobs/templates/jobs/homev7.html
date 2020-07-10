@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <main role="main">
+
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Hellema's Art Gallery</h1>
+          <p class="lead text-muted">Abstract, fine art and figurative painter. My works are mostly landscape and nature.</p>
+          <p>
+            <a href="mailto:hellema@pm.me" class="btn btn-primary my-2">Email me</a>
+          </p>
+          <img src="{% static 'hellema.jpg' %}" height = 300></img>
+        </div>
+      </section>
+
+
+      <div id="section-album" class="album py-5 bg-light">
+        <div class="container">         
+          <div class="row">
+            <h1>All my art </h1>    
+
+            My favorite gallery is : 
+          <p>
+            <a href="{% url 'jobs.views.category_content' category_id=1 %}" class="btn btn-primary my-2"> Gallery </a>
+            <!-- <a href="{% url 'jobs.views.category_content' category_id=1 %}" class="btn btn-primary my-2"> Gallery {{ Category.  objects.  get   (id=1) }}</a>  -->
+            <!-- <a href="{% url 'category_content' %}" class="btn btn-primary my-2">Gallery</a> -->
+          </p>
+
+            {% for job in jobs.all %}
+
+            <div class="col-md-4">
+            <a href = "{% url 'detail' job.id %}">
+              <div class="card mb-4 box-shadow">
+                  
+                <img class="card-img-top" src="{{ job.image.url }}" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">{{ job.summary}}</p>
+
+                  <!-- delete this -->
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Buy</button>
+                    </div>
+                    <small class="text-muted">{{ job.price }} £</small>
+                  </div>
+                  <!--  delete this -->
+                  
+                </div>
+              </div>
+            </a>
+            </div>
+
+            {% endfor%}
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+{% endblock %}
