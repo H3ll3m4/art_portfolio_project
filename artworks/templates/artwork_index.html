@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block page_content %}
+<div class="album py-5 bg-dark text-light">
+<!-- <div class="album py-5 bg-secondary"> -->
+    <div class="container">   
+        <h1> My latest artworks </h1>
+        <hr>   
+        <div class="row">
+        {% for artwork in artworks %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+            <div class="card-body bg-dark text-light">
+                <p class="card-text">{{ artwork.title}}</p>
+                <img class="card-img-top" src="{{ artwork.image.url }}" alt="Artwork photo">
+                <div class="d-flex justify-content-between align-items-center">
+                    {{ artwork.info}}
+                </div>
+                <small class="text-muted">
+                    in category:&nbsp;
+                    {% for category in artwork.categories.all %}
+                    <a href="{% url 'artwork_category' category.name %}">
+                        {{ category.name }}
+                    </a>&nbsp;
+                    {% endfor %}
+                </small>
+                <div class="btn-group">
+                    <a href = "{% url 'artwork_detail' artwork.id %}">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button> 
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor%}
+
+<!-- v1
+<div class="col-md-8 offset-md-2">
+    <h1>artwork Index</h1>
+    <hr>
+    {% for artwork in artworks %}
+    <h2><a href="{% url 'artwork_detail' artwork.pk%}">{{ artwork.title }}</a></h2>
+    <small>
+        {{ artwork.created_on.date }} |&nbsp;
+        Categories:&nbsp;
+        {% for category in artwork.categories.all %}
+        <a href="{% url 'artwork_category' category.name %}">
+            {{ category.name }}
+        </a>&nbsp;
+        {% endfor %}
+    </small>
+    <p>{{ artwork.info | slice:":400" }}...</p>
+    {% endfor %}
+</div>
+-->
+
+
+
+{% endblock %}

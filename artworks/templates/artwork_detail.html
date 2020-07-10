@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block page_content %}
+
+<!--
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Piece detail</h1>
+          <p class="lead text-muted">{{ artwork.info }}</p>
+
+          <img src="{{ artwork.image.url }}" height = 900></img>
+          <p>
+            <a href="{% url 'artwork_index' %}" class="btn btn-primary my-2">Back</a>
+          </p>
+        </div>
+      </section>
+-->
+
+<div class="col-md-8 offset-md-2">
+    <h1>{{ artwork.title }}</h1>
+        <p>{{ artwork.info | linebreaks }}</p>
+    <small>
+        Categories:&nbsp;
+        {% for category in artwork.categories.all %}
+        <a href="{% url 'artwork_category' category.name %}">
+            {{ category.name }}
+        </a>&nbsp;
+        {% endfor %}
+    </small>
+
+    <img class="card-img-top" src="{{ artwork.image.url }}" alt="Artwork photo">
+        <!-- v1
+        <img src="{{ artwork.image.url }}" class="img-responsive" height = 900></img>
+        <p>
+            <a href="{% url 'artwork_index' %}" class="btn btn-primary my-2">Back</a>
+        </p>
+        -->
+
+
+<!-- Comment section 
+    <h3>Leave a comment:</h3>
+    <form action="/artwork/{{ artwork.pk }}/" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.author }}
+        </div>
+        <div class="form-group">
+            {{ form.body }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h3>Comments:</h3>
+    {% for comment in comments %}
+    <p>
+        On {{comment.created_on.date }}&nbsp;
+        <b>{{ comment.author }}</b> wrote:
+    </p>
+    <p>{{ comment.body }}</p>
+    <hr>
+--> 
+
+    
+
+    {% endfor %}
+</div>
+
+{% endblock %}
