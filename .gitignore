@@ -8,9 +8,9 @@ media
 *settings.py
 *.jpg
 *.svg
-*/static/
+static/
+jobs/static/
 */migrations/
-
 images
 
 
