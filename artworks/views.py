@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from artworks.models import Artwork  # , Comment
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # from .forms import CommentForm
 
@@ -41,3 +42,17 @@ def artwork_detail(request, pk):
     context = {"artwork": artwork}
     return render(request, "artwork_detail.html", context)
 
+
+def paginator_index(request):
+    artworks_list = Artwork.objects.all()
+    page = request.GET.get("page", 1)
+
+    paginator = Paginator(artworks_list, 12)
+    try:
+        artworks = paginator.page(page)
+    except PageNotAnInteger:
+        artworks = paginator.page(1)
+    except EmptyPage:
+        artworks = paginator.page(paginator.num_pages)
+
+    return render(request, "artwork_page.html", {"artworks": artworks})

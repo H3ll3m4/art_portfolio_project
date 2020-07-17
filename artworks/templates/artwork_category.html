@@ -33,26 +33,5 @@
     </div>
     {% endfor%}
 
-<!--v1
-<div class="col-md-8 offset-md-2">
-    <h1>{{ category | title }}</h1>
-    <hr>
-    {% for artwork in artworks %}
-        <h2><a href="{% url 'artwork_detail' artwork.pk%}">{{ artwork.title }}</a></h2>
-        <small>
-            {{ artwork.price }} |&nbsp;
-            Categories:&nbsp;
-            {% for category in artwork.categories.all %}
-            <a href="{% url 'artwork_category' category.name %}">
-                {{ category.name }}
-            </a>&nbsp;
-            {% endfor %}
-        </small>
-        <p>{{ artwork.info | slice:":400" }}...</p>
-    {% endfor %}
-</div>
--->
-
-
 
 {% endblock %}

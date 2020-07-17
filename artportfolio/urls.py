@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.artwork_index, name="artwork_index"),
+    path("", views.paginator_index, name="artwork_page"),
+    path("all", views.artwork_index, name="artwork_index"),
     path("<int:pk>/", views.artwork_detail, name="artwork_detail"),
     path("<category>/", views.artwork_category, name="artwork_category"),
 ]

@@ -5,7 +5,8 @@ from .models import Artwork, Category  # , Comment
 
 
 class ArtworkAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["title", "info", "price", "slug",]
+    #pass
 
 
 class CategoryAdmin(admin.ModelAdmin):
